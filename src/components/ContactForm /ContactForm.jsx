@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Notiflix from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from 'redux/contacts/contactsOperation';
 import { selectContacts } from 'redux/contacts/selectors';
@@ -67,7 +68,10 @@ export const ContactForm = () => {
       return false;
     }
 
-    dispatch(addContacts(contact));
+    dispatch(addContacts(contact))
+      .unwrap()
+      .then(() => Notiflix.Notify.success('You added new contact!'))
+      .catch(() => Notiflix.Notify.warning('Something went wrong...:('));
     setName('');
     setNumber('');
   };

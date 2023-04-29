@@ -1,4 +1,7 @@
 import { useDispatch } from 'react-redux';
+import { Field, Form, Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import Notiflix from 'notiflix';
 import { logIn } from 'redux/auth/authOperations';
 
 const styles = {
@@ -12,55 +15,63 @@ const styles = {
   },
 };
 
+const LoginSchema = yup.object().shape({
+  email: yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required field.'),
+  password: yup
+    .string('Enter your password')
+    .min(5, 'Password should be of minimum 5 characters length')
+    .required('Password is required field'),
+});
+
+const initialValues = {
+  name: '',
+  email: '',
+  password: '',
+};
+
 export const LoginForm = () => {
   const dispatch = useDispatch();
-
-  // *alternative with setState;
-  //   const [password, setPassword] = useState();
-  //   const [email, setEmail] = useState();
-
-  //   const handleChange = ({ target: { name, value } }) => {
-  //     switch (name) {
-  //       case 'email':
-  //         return setEmail(value);
-  //       case 'password':
-  //         return setPassword(value);
-  //       default:
-  //         return;
-  //     }
-  //   };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const handleSubmit = (values, { resetForm }) => {
     dispatch(
       logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        name: values.name,
+        email: values.email,
+        password: values.password,
       })
-    );
-    form.reset();
-    //  dispatch(authOperations.logIn({ password, email }));
-    //  setPassword('');
-    //  setEmail('');
+    )
+      .unwrap()
+      .then(() => Notiflix.Notify.success('Registration is successfully!'))
+      .catch(() => Notiflix.Notify.warning('Something went wrong...:('));
+    console.log(values);
+    resetForm();
   };
 
   return (
     <div>
-      <h1>Страница логина</h1>
+      <h1>Страница регистрации</h1>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={LoginSchema}
+        onSubmit={handleSubmit}
+      >
+        <Form style={styles.form} autoComplete="off">
+          <label style={styles.label}>
+            Почта
+            <Field type="email" name="email" />
+            <ErrorMessage name="email" />
+          </label>
 
-      <form autoComplete="off" style={styles.form} onSubmit={handleSubmit}>
-        <label style={styles.label}>
-          Почта
-          <input type="email" name="email" />
-        </label>
-        <label style={styles.label}>
-          Пароль
-          <input type="password" name="password" />
-        </label>
-
-        <button type="submit">Log In</button>
-      </form>
+          <label style={styles.label}>
+            Пароль
+            <Field type="password" name="password" />
+            <ErrorMessage name="password" />
+          </label>
+          <button type="submit">Зарегистрироваться</button>
+        </Form>
+      </Formik>
     </div>
   );
 };

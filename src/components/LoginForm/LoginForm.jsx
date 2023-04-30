@@ -1,19 +1,20 @@
 import { useDispatch } from 'react-redux';
-import { Field, Form, Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import Notiflix from 'notiflix';
 import { logIn } from 'redux/auth/authOperations';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import {
+  BtnSubmit,
+  Error,
+  FormWrap,
+  IconUser,
+  Input,
+  InputContainer,
+  LabelInput,
+  TitleLable,
+} from './LoginForm.styled';
+import { FiPhone } from 'react-icons/fi';
+import { MainSection } from 'components/App/App.styled';
 
 const LoginSchema = yup.object().shape({
   email: yup
@@ -23,7 +24,7 @@ const LoginSchema = yup.object().shape({
   password: yup
     .string('Enter your password')
     .min(5, 'Password should be of minimum 5 characters length')
-    .required('Password is required field'),
+    .required('Password is required field, min 5 characters'),
 });
 
 const initialValues = {
@@ -50,28 +51,37 @@ export const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h1>Страница регистрации</h1>
+    <MainSection>
+      <h1>Hello! Happy to see you again!</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
         onSubmit={handleSubmit}
       >
-        <Form style={styles.form} autoComplete="off">
-          <label style={styles.label}>
-            Почта
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" />
-          </label>
-
-          <label style={styles.label}>
-            Пароль
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" />
-          </label>
-          <button type="submit">Зарегистрироваться</button>
-        </Form>
+        <FormWrap autoComplete="off">
+          <LabelInput>
+            <TitleLable>Email</TitleLable>
+            <InputContainer>
+              <IconUser>
+                <FiPhone />
+              </IconUser>
+              <Input type="email" name="email" />
+              <Error name="email" component="div" />
+            </InputContainer>
+          </LabelInput>
+          <LabelInput>
+            <TitleLable>Password</TitleLable>
+            <InputContainer>
+              <IconUser>
+                <FiPhone />
+              </IconUser>
+              <Input type="password" name="password" />
+              <Error name="password" component="div" />
+            </InputContainer>
+          </LabelInput>
+          <BtnSubmit type="submit">Log In</BtnSubmit>
+        </FormWrap>
       </Formik>
-    </div>
+    </MainSection>
   );
 };

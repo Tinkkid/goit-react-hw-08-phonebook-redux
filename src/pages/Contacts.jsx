@@ -1,4 +1,5 @@
 // import { ContactsTitle, Title } from 'components/App/App.styled';
+import { ContactsTitle, MainSection, Title } from 'components/App/App.styled';
 import { ContactForm } from 'components/ContactForm /ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
@@ -17,13 +18,13 @@ export default function Contacts() {
     dispatch(fetchContacts());
   }, [dispatch]);
   return (
-    <>
-      <h1>Phonebook</h1>
+    <MainSection>
+      <Title>MY PHONEBOOK</Title>
       <ContactForm />
-      <h2>Contacts</h2>
+      <ContactsTitle>Contacts</ContactsTitle>
       {isLoading && !error && <Loader />}
       <Filter />
       <ContactList />
-    </>
+    </MainSection>
   );
 }

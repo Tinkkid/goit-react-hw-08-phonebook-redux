@@ -7,7 +7,6 @@ import { refreshUser } from 'redux/auth/authOperations';
 import { RestrictedRoute } from 'components/Rotes/RestrictedRote';
 import { PrivateRoute } from 'components/Rotes/PrivateRoute';
 import { Layout } from 'components/Layout/Layout';
-import { MainSection } from './App.styled';
 import { Loader } from 'components/Loader/Loader';
 
 const HomePage = lazy(() => import('../../pages/Home'));
@@ -25,7 +24,7 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <MainSection>
+    <>
       {isRefreshing ? (
         <Loader />
       ) : (
@@ -62,6 +61,6 @@ export const App = () => {
           </Route>
         </Routes>
       )}
-    </MainSection>
+    </>
   );
 };

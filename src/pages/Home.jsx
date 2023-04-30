@@ -1,11 +1,12 @@
+import { MainWrapper, TextHome, TitleHome } from 'components/App/App.styled';
+
 export default function Home() {
   return (
-    <section>
-      <h1>Hello</h1>
-    </section>
+    <MainWrapper>
+      <TitleHome>My Phonebook</TitleHome>
+      <TextHome>For work with your contacts list sign up or log in</TextHome>
+    </MainWrapper>
   );
 }
 
-// Welcome to Phonebook 👋
-// Please, register or login to work with private collections of contacts.
-//and image
+// *Styled for Home in App Folder

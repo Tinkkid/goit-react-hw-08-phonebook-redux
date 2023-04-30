@@ -5,18 +5,13 @@ import {
   TitleHome,
   TitleWrapper,
 } from 'components/StartPage/StartPage.styled';
+import cat from '../../cat.jpeg';
 
 export const StartPage = () => {
   return (
     <MainWrapper>
       <ImageHome>
-        <img
-          src={
-            'https://images.pexels.com/photos/531602/pexels-photo-531602.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-          }
-          alt="phonebook"
-          width={'100%'}
-        />
+        <img src={cat} alt="phonebook" width={'100%'} />
       </ImageHome>
       <TitleWrapper>
         <div>

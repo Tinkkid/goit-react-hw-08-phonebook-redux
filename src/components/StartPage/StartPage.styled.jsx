@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const MainWrapper = styled.section`
   display: flex;
-  margin-top: 40px;
+  margin-top: 60px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 `;
@@ -15,6 +15,7 @@ export const TitleWrapper = styled.div`
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: 300%;
+  width: 60%;
 `;
 
 export const TitleHome = styled.h1`
@@ -37,5 +38,5 @@ export const ImageHome = styled.div`
   /* padding: 40px 0; */
   /* background-position: bottom center;
   background-repeat: no-repeat; */
-  width: 50%;
+  width: 40%;
 `;

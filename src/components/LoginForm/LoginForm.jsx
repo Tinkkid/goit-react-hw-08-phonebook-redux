@@ -14,7 +14,7 @@ import {
   TitleLable,
 } from './LoginForm.styled';
 import { FiPhone } from 'react-icons/fi';
-import { MainSection } from 'components/App/App.styled';
+import { MainSection, Title } from 'components/App/App.styled';
 
 const LoginSchema = yup.object().shape({
   email: yup
@@ -28,7 +28,6 @@ const LoginSchema = yup.object().shape({
 });
 
 const initialValues = {
-  name: '',
   email: '',
   password: '',
 };
@@ -38,7 +37,6 @@ export const LoginForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     dispatch(
       logIn({
-        name: values.name,
         email: values.email,
         password: values.password,
       })
@@ -52,7 +50,10 @@ export const LoginForm = () => {
 
   return (
     <MainSection>
-      <h1>Hello! Happy to see you again!</h1>
+      <Title>
+        Hello! <br />
+        Welcome back!
+      </Title>
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}

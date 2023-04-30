@@ -12,12 +12,9 @@ export const Layout = () => {
         <AppBar />
       </Section>
       <Suspense fallback={<Loader />}>
-        <main>
-          <MainContainer>
-            <Outlet />
-          </MainContainer>
-        </main>
-
+        <MainContainer>
+          <Outlet />
+        </MainContainer>
         <Footer>
           <FooterLink
             href="https://github.com/Tinkkid?tab=repositories"

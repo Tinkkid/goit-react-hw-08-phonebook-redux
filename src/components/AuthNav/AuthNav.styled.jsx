@@ -5,6 +5,9 @@ export const StyledLink = styled(NavLink)`
   color: #c4c3ca;
   font-size: 20px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 
   &.active {
     color: #ffeba7;
@@ -14,5 +17,5 @@ export const StyledLink = styled(NavLink)`
 export const AuthNavWrapper = styled.div`
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
 `;

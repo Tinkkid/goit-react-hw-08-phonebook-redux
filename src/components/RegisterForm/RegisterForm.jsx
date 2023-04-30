@@ -13,8 +13,12 @@ import {
   LabelInput,
   TitleLable,
 } from './RegisterForm.styled';
-import { FiPhone } from 'react-icons/fi';
-import { MainSection } from 'components/App/App.styled';
+import { FiUser } from 'react-icons/fi';
+import { HiOutlineMail } from 'react-icons/hi';
+import { RiLockPasswordLine } from 'react-icons/ri';
+import { MainSection, Title } from 'components/App/App.styled';
+
+const passwordRules = /^(?=.*\d)(?=.*[A-Za-z]).{5,}$/;
 
 const RegisterSchema = yup.object().shape({
   name: yup
@@ -26,8 +30,10 @@ const RegisterSchema = yup.object().shape({
     .required('Email is required field.'),
   password: yup
     .string('Enter your password')
-    .min(5, 'Password should be of minimum 5 characters length')
-    .required('Password is required field, min 5 characters'),
+    .matches(passwordRules, {
+      message: 'Please create a stronger password, min 4 letters and 1 number',
+    })
+    .required('Password is required field, min 4 letters and 1 number'),
 });
 
 const initialValues = {
@@ -56,6 +62,10 @@ export const RegisterForm = () => {
 
   return (
     <MainSection>
+      <Title>
+        Welcome! <br />
+        Please, Sign Up
+      </Title>
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
@@ -66,7 +76,7 @@ export const RegisterForm = () => {
             <TitleLable>Name</TitleLable>
             <InputContainer>
               <IconUser>
-                <FiPhone />
+                <FiUser />
               </IconUser>
               <Input type="text" name="name" />
             </InputContainer>
@@ -77,7 +87,7 @@ export const RegisterForm = () => {
             <TitleLable>Email</TitleLable>
             <InputContainer>
               <IconUser>
-                <FiPhone />
+                <HiOutlineMail />
               </IconUser>
               <Input type="email" name="email" />
             </InputContainer>
@@ -88,7 +98,7 @@ export const RegisterForm = () => {
             <TitleLable>Password</TitleLable>
             <InputContainer>
               <IconUser>
-                <FiPhone />
+                <RiLockPasswordLine />
               </IconUser>
               <Input type="password" name="password" />
             </InputContainer>

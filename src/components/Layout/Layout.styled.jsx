@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.section`
-  padding: 30px;
+  padding: 30px 40px;
   margin: 0 auto;
   background-color: #2a2b38;
   background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg');
@@ -11,7 +11,7 @@ export const Section = styled.section`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 `;
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.main`
   max-width: 1240px;
   margin: 0px auto;
   padding: 0px 16px;

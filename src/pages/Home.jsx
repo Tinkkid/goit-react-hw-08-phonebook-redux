@@ -1,12 +1,5 @@
-import { MainWrapper, TextHome, TitleHome } from 'components/App/App.styled';
+import { StartPage } from 'components/StartPage/StartPage';
 
 export default function Home() {
-  return (
-    <MainWrapper>
-      <TitleHome>My Phonebook</TitleHome>
-      <TextHome>For work with your contacts list sign up or log in</TextHome>
-    </MainWrapper>
-  );
+  return <StartPage />;
 }
-
-// *Styled for Home in App Folder

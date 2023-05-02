@@ -18,8 +18,6 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { MainSection, Title } from 'components/App/App.styled';
 
-const passwordRules = /^(?=.*\d)(?=.*[A-Za-z]).{5,}$/;
-
 const RegisterSchema = yup.object().shape({
   name: yup
     .string(' Name may contain only letters, apostrophe, dash and spaces.')
@@ -30,10 +28,8 @@ const RegisterSchema = yup.object().shape({
     .required('Email is required field.'),
   password: yup
     .string('Enter your password')
-    .matches(passwordRules, {
-      message: 'Please create a stronger password, min 4 letters and 1 number',
-    })
-    .required('Password is required field, min 4 letters and 1 number'),
+    .min(7, 'Password should be of minimum 7 characters length')
+    .required('Password is required field, min 7 characters'),
 });
 
 const initialValues = {
@@ -55,7 +51,9 @@ export const RegisterForm = () => {
     )
       .unwrap()
       .then(() => Notiflix.Notify.success('Registration is successfully!'))
-      .catch(() => Notiflix.Notify.warning('Something went wrong...:('));
+      .catch(() =>
+        Notiflix.Notify.warning('Something went wrong...:( Try again!')
+      );
     console.log(values);
     resetForm();
   };

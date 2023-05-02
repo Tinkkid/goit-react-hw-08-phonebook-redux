@@ -6,7 +6,7 @@ export const MainSection = styled.section`
   align-items: center;
   padding: 30px;
   margin: 30px auto;
-  width: fit-content;
+  width: 500px;
   background-color: #2a2b38;
   background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg');
   border-radius: 5px;

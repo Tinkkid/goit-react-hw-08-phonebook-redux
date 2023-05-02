@@ -1,12 +1,22 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import Notiflix from 'notiflix';
+import PropTypes from 'prop-types';
+import { MdDeleteForever, MdEdit, MdSave } from 'react-icons/md';
 import {
   deleteContacts,
   updateContact,
 } from 'redux/contacts/contactsOperation';
-import { Name, Number, BtnDelete, BtnUpdate } from './ContactsItem.styled';
+import {
+  Name,
+  Number,
+  BtnIcon,
+  Input,
+  BtnWrapper,
+  ContactsItemWrap,
+  Form,
+  ListWrap,
+} from './ContactsItem.styled';
 
 export const ContactsItem = ({ contact }) => {
   const [name, setName] = useState(contact.name);
@@ -40,6 +50,7 @@ export const ContactsItem = ({ contact }) => {
     } else {
       setIsEdit(false);
       dispatch(updateContact({ id: contact.id, name, number }));
+      Notiflix.Notify.success('Contact edited!');
     }
   };
 
@@ -50,41 +61,40 @@ export const ContactsItem = ({ contact }) => {
     handleEditContact();
   };
   return (
-    <>
+    <ContactsItemWrap>
       {isEdit ? (
-        <form onKeyDown={onSubmit}>
-          <label>
-            Name:
-            <input
-              name="name"
-              value={name}
-              onChange={handleChange}
-              type="text"
-            />
-          </label>
-          <label>
-            Number
-            <input
-              name="number"
-              value={number}
-              onChange={handleChange}
-              title="Edit phone number"
-              type="tel"
-            />
-          </label>
-        </form>
+        <Form onKeyDown={onSubmit}>
+          <Input name="name" value={name} onChange={handleChange} type="text" />
+          <Input
+            name="number"
+            value={number}
+            onChange={handleChange}
+            title="Edit phone number"
+            type="tel"
+          />
+          <BtnWrapper>
+            <BtnIcon type="button" onClick={handleEditContact}>
+              {isEdit ? <MdSave size={'20'} /> : <MdEdit size={'20'} />}
+            </BtnIcon>
+            <BtnIcon type="button" onClick={handleDelete}>
+              <MdDeleteForever size={'20'} />
+            </BtnIcon>
+          </BtnWrapper>
+        </Form>
       ) : (
-        <>
-          <Name>{name}:</Name> <Number>{number}</Number>
-        </>
+        <ListWrap>
+          <Name>{name}</Name> <Number>{number}</Number>
+          <BtnWrapper>
+            <BtnIcon type="button" onClick={handleEditContact}>
+              {isEdit ? <MdSave size={'20'} /> : <MdEdit size={'20'} />}
+            </BtnIcon>
+            <BtnIcon type="button" onClick={handleDelete}>
+              <MdDeleteForever size={'20'} />
+            </BtnIcon>
+          </BtnWrapper>
+        </ListWrap>
       )}
-      <BtnDelete type="button" onClick={handleDelete}>
-        Delete
-      </BtnDelete>
-      <BtnUpdate type="button" onClick={handleEditContact}>
-        {isEdit ? <p>Close</p> : <p>Edit</p>}
-      </BtnUpdate>
-    </>
+    </ContactsItemWrap>
   );
 };
 

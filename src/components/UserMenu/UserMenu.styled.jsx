@@ -22,7 +22,7 @@ export const BtnSubmit = styled.button`
   border-radius: 4px;
   font-size: 20px;
   transition: all 200ms linear;
-  padding: 2px 6px;
+  padding: 0px 6px;
   display: flex;
   align-items: center;
   justify-content: center;

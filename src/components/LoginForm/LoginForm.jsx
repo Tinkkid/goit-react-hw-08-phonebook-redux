@@ -13,7 +13,8 @@ import {
   LabelInput,
   TitleLable,
 } from './LoginForm.styled';
-import { FiPhone } from 'react-icons/fi';
+import { HiOutlineMail } from 'react-icons/hi';
+import { RiLockPasswordLine } from 'react-icons/ri';
 import { MainSection, Title } from 'components/App/App.styled';
 
 const LoginSchema = yup.object().shape({
@@ -23,8 +24,8 @@ const LoginSchema = yup.object().shape({
     .required('Email is required field.'),
   password: yup
     .string('Enter your password')
-    .min(5, 'Password should be of minimum 5 characters length')
-    .required('Password is required field, min 5 characters'),
+    .min(7, 'Password should be of minimum 7 characters length')
+    .required('Password is required field, min 7 characters'),
 });
 
 const initialValues = {
@@ -64,21 +65,21 @@ export const LoginForm = () => {
             <TitleLable>Email</TitleLable>
             <InputContainer>
               <IconUser>
-                <FiPhone />
+                <HiOutlineMail />
               </IconUser>
               <Input type="email" name="email" />
-              <Error name="email" component="div" />
             </InputContainer>
+            <Error name="email" component="div" />
           </LabelInput>
           <LabelInput>
             <TitleLable>Password</TitleLable>
             <InputContainer>
               <IconUser>
-                <FiPhone />
+                <RiLockPasswordLine />
               </IconUser>
               <Input type="password" name="password" />
-              <Error name="password" component="div" />
             </InputContainer>
+            <Error name="password" component="div" />
           </LabelInput>
           <BtnSubmit type="submit">Log In</BtnSubmit>
         </FormWrap>

@@ -1,12 +1,9 @@
 import styled from '@emotion/styled';
 
-export const List = styled.ol`
+export const List = styled.ul`
   padding-inline-start: 0;
+  width: 500px;
 `;
 export const Item = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  gap: 10px;
+  list-style: none;
 `;

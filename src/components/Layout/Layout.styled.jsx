@@ -14,7 +14,7 @@ export const Section = styled.section`
 export const MainContainer = styled.main`
   max-width: 1240px;
   margin: 0px auto;
-  padding: 0px 16px;
+  padding: 0px 140px;
 `;
 
 export const Footer = styled.footer`

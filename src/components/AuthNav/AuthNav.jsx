@@ -7,10 +7,10 @@ export const AuthNav = () => {
   return (
     <AuthNavWrapper>
       <StyledLink to="/register">
-        <p>Sign Up</p> <MdAppRegistration size="24" />
+        <p style={{ lineHeight: 0 }}>Sign Up</p> <MdAppRegistration size="24" />
       </StyledLink>
       <StyledLink to="/login">
-        <p>Login</p>
+        <p style={{ lineHeight: 0 }}>Log in</p>
         <LoginIcon size="24" />
       </StyledLink>
     </AuthNavWrapper>
